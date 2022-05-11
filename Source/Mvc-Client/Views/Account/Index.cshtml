@@ -1,0 +1,48 @@
+﻿@{ ViewData["Name"] = "Your identity"; }
+@model AccountViewModel
+<div class="card mb-3">
+	<div class="card-header">
+		<h2 class="h5 m-0">Claims</h2>
+	</div>
+	<div class="card-body">
+		<dl class="m-0">
+			@foreach(var claim in Model.Claims)
+			{
+				<dt>@claim.Type</dt>
+				<dd>@claim.Value</dd>
+			}
+		</dl>
+	</div>
+</div>
+<div class="card mb-3">
+	<div class="card-header">
+		<h2 class="h5 m-0">Properties</h2>
+	</div>
+	<div class="card-body">
+		<dl class="m-0">
+			@foreach(var (key, value) in Model.Properties)
+			{
+				<dt>@key</dt>
+				<dd>@value</dd>
+			}
+		</dl>
+	</div>
+</div>
+<div class="card">
+	<div class="card-header">
+		<h2 class="h5 m-0">Tokens</h2>
+	</div>
+	<div class="card-body pb-0">
+		@foreach(var (key, value) in Model.Tokens)
+		{
+			<div class="card mb-3">
+				<div class="card-header">
+					<h3 class="h6 m-0">@key</h3>
+				</div>
+				<div class="card-body">
+					<partial model="@value" name="TokenInformation" />
+				</div>
+			</div>
+		}
+	</div>
+</div>

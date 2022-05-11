@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+	<PropertyGroup>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<TargetFramework>net6.0</TargetFramework>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Grpc.AspNetCore" Version="2.45.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.4" />
+	</ItemGroup>
+	<ItemGroup>
+		<Protobuf GrpcServices="Server" Include="..\gRPC\Service.proto" Link="gRPC\Service.proto" />
+	</ItemGroup>
+</Project>

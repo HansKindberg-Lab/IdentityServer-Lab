@@ -1,0 +1,7 @@
+﻿@{ ViewData["Name"] = "Sign out"; }
+@model SignOutViewModel
+Do you want to sign out@(Model.Form.Local ? " locally" : null)?
+<form asp-action="SignOut" asp-controller="Account" class="d-inline ml-2">
+	<input asp-for="Form.Local" type="hidden" />
+	<button autofocus="autofocus" class="btn btn-primary" type="submit">Yes</button>
+</form>

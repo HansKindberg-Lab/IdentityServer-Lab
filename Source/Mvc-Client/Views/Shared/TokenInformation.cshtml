@@ -1,0 +1,38 @@
+﻿@model ITokenInformation
+@if(Model == null)
+{
+	<div class="alert alert-warning">
+		<i>The token is null.</i>
+	</div>
+}
+else
+{
+	@if(Model.Exception == null)
+	{
+		<pre>@Model.Header@($",{Environment.NewLine}")@Model.Payload</pre>
+		<dl class="m-0">
+			@if(Model.IssuedAt != null)
+			{
+				<dt>Issued at</dt>
+				<dd>@Model.IssuedAt</dd>
+			}
+			@if(Model.ValidFrom != null)
+			{
+				<dt>Valid from</dt>
+				<dd>@Model.ValidFrom</dd>
+			}
+			@if(Model.ValidTo != null)
+			{
+				<dt>Valid to</dt>
+				<dd>@Model.ValidTo</dd>
+			}
+		</dl>
+	}
+	else
+	{
+		<p>The token "@Model.Encoded" is invalid.</p>
+		<div class="alert alert-danger">
+			@Model.Exception
+		</div>
+	}
+}

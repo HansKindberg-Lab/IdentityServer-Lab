@@ -1,0 +1,62 @@
+﻿@{ ViewData["Name"] = "Call service"; }
+@model ServiceClientViewModel
+<p>
+	<a asp-route-mode="@RequestMode.Anonymous" class="btn btn-outline-warning">Anonymous</a>
+</p>
+<p>
+	<a asp-route-mode="@RequestMode.ManagedClientAccessToken" class="btn btn-outline-primary">Managed client access token</a>
+</p>
+<p>
+	<a asp-route-mode="@RequestMode.ManagedUserAccessToken" class="btn btn-outline-secondary">Managed user access token</a>
+</p>
+<p>
+	<a asp-route-mode="@RequestMode.UserAccessToken" class="btn btn-outline-dark">User access token</a>
+</p>
+<p>
+	<a asp-route-mode="@null" class="btn btn-light">Clear</a>
+</p>
+@if(Model.Mode != null)
+{
+	<div class="alert alert-info">
+		<span>
+			<strong>Mode: </strong>@Model.Mode
+		</span>
+		@if(Model.Token == null)
+		{
+			<br />
+			<span>The token is null.</span>
+		}
+	</div>
+	@if(Model.Exception == null)
+	{
+		<div class="card mb-3">
+			<div class="card-header">
+				<h2 class="h5 m-0">Claims</h2>
+			</div>
+			<div class="card-body">
+				@if(Model.Claims.Any())
+				{
+					<dl class="m-0">
+						@foreach(var claim in Model.Claims)
+						{
+							<dt>@claim.Type</dt>
+							<dd>@claim.Value</dd>
+						}
+					</dl>
+				}
+				else
+				{
+					<div class="alert alert-warning m-0">
+						<i>No claims.</i>
+					</div>
+				}
+			</div>
+		</div>
+	}
+	else
+	{
+		<div class="alert alert-danger m-0">
+			@Model.Exception
+		</div>
+	}
+}

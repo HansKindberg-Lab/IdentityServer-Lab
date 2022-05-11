@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option csharp_namespace = "Service.Definitions";
+
+package service.definitions;
+
+message ClaimsRequest {}
+
+message ClaimsResponse {
+	message Claim {
+		string type = 1;
+		string value = 2;
+	}
+	repeated Claim claims = 1;
+}
+
+service ClaimsService {
+	rpc Get (ClaimsRequest) returns (ClaimsResponse);
+}

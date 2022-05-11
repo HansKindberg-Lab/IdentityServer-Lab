@@ -1,0 +1,21 @@
+﻿@{ ViewData["Name"] = "Token information"; }
+@model TokenViewModel
+<p>
+	<a asp-route-mode="@TokenMode.ManagedClientAccessToken" class="btn btn-outline-primary">Managed client access token</a>
+</p>
+<p>
+	<a asp-route-mode="@TokenMode.ManagedUserAccessToken" class="btn btn-outline-secondary">Managed user access token</a>
+</p>
+<p>
+	<a asp-route-mode="@TokenMode.UserAccessToken" class="btn btn-outline-dark">User access token</a>
+</p>
+<p>
+	<a asp-route-mode="@null" class="btn btn-light">Clear</a>
+</p>
+@if(Model.Mode != null)
+{
+	<div class="alert alert-info">
+		<strong>Mode: </strong>@Model.Mode
+	</div>
+	<partial model="@Model.Token" name="TokenInformation" />
+}
